@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import React from 'react';
+import rawData from './cardinfo.php.json';
 
 function App() {
+	var imgs = new Array();
+	for(var i = 0; i < 100; i++){
+		var currCard = rawData.data[i].id;
+		imgs[i] = "./cardImages/"+currCard+".jpg";
+	}
+	var cards = imgs.map(function(image) {
+ 		return (<img src={require(""+image+"")} className="card" />);
+	});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page">
+    	<div className="cardContainer">
+        {cards}
+        </div>
     </div>
   );
 }
 
 export default App;
+
+
